@@ -26,13 +26,17 @@ class CartController extends Controller
             ];
         });
 
+        $grandTotal = $results->sum('totalPrice');
+
         return view("show-cart", [
-            "carts" => $results
+            "carts" => $results,
+            "grandTotal" => $grandTotal
         ]);
     }
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $data = $request->only(['id', 'amount']);
 
         if ($request->session()->has('cart')) {

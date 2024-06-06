@@ -9,6 +9,7 @@
 
 <body>
     <h1>Carts</h1>
+    <a href="{{route('category')}}">back to category</a>
 
     <table border="1">
         <tr>
@@ -16,14 +17,19 @@
             <th>Jumlah</th>
             <th>Total Harga</th>
         </tr>
-
         @foreach ($carts as $cart)
-        <tr>
-            <td>{{ $cart["name"] }}</td>
-            <td>{{ $cart["amount"] }}</td>
-            <td>${{ $cart["totalPrice"] }}</td>
-        </tr>
+            <tr>
+                <td>{{ $cart["name"] }}</td>
+                <td>{{ $cart["amount"] }}</td>
+                <td>${{ $cart["totalPrice"] }}</td>
+            </tr>
         @endforeach
+        <tr>
+            <td colspan="2"><strong>Grand Total</strong></td>
+            <td><strong>${{ $grandTotal }}</strong></td>
+        </tr>
+    </table>
+
 </body>
 
 </html>

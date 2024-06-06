@@ -9,6 +9,7 @@
 
 <body>
     <h1>Daftar Kategori</h1>
+    <a href="{{route('cart.get')}}">cart</a>
 
     <table border="1">
         <tr>
@@ -17,10 +18,10 @@
         </tr>
 
         @foreach ($categories as $category)
-        <tr>
-            <td><a href="{{ route('category.get', $category->CategoryID) }}">{{ $category->CategoryName }}</a></td>
-            <td>{{ $category->Description }}</td>
-        </tr>
+            <tr>
+                <td><a href="{{ route('category.get', $category->CategoryID) }}">{{ $category->CategoryName }}</a></td>
+                <td>{{ $category->Description }}</td>
+            </tr>
         @endforeach
 </body>
 
