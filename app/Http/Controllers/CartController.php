@@ -18,12 +18,16 @@ class CartController extends Controller
         $results = Product::whereIn('ProductID', $cartIds)->get();
 
         $results = $results->map(function ($cart, $key) use ($carts) {
-            return [
-                "id" => $cart->ProductID,
-                "name" => $cart->ProductName,
-                "amount" => $carts[$key]["amount"],
-                "totalPrice" => $cart->UnitPrice * $carts[$key]["amount"]
-            ];
+            foreach ($carts as $k => $c) {
+                if ($c["id"] == $cart->ProductID) {
+                    return [
+                        "id" => $cart->ProductID,
+                        "name" => $cart->ProductName,
+                        "amount" => $carts[$k]["amount"],
+                        "totalPrice" => $cart->UnitPrice * $carts[$k]["amount"]
+                    ];
+                }
+            }
         });
 
         $grandTotal = $results->sum('totalPrice');
